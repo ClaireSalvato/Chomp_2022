@@ -11,6 +11,15 @@ public class MyPlayer {
          * This code will run just once, when the game opens.
          * Add your code here.
          */
+        //print all combinations
+
+        for(int i = 1; i < 4; i++){
+            for(int j =0; j<4; j++){
+                for(int k =0; k<4; k++){
+                    System.out.println(i+""+j + ""+k);
+                }
+            }
+        }
     }
 
     public Point move(Chip[][] pBoard) {
