@@ -13,10 +13,26 @@ public class MyPlayer {
          */
         //print all combinations
 
-        for(int i = 1; i < 4; i++){
-            for(int j =0; j<4; j++){
-                for(int k =0; k<4; k++){
-                    System.out.println(i+""+j + ""+k);
+        for(int x = 1; x < 4; x++){
+            for(int y =0; y<=y; y++){
+                for(int z =0; z<=z; z++){
+                    if (y<= x && z <=y){
+                        System.out.println("Reg board" + String.valueOf(x) + String.valueOf(y) + String.valueOf(z));
+                        derivedBoards(x,y,z);
+                    }
+
+                }
+            }
+        }
+    }
+
+    public void derivedBoards (int i, int j, int k){
+        int[]derivedBoards = new int [19];
+        for(int x =1; x <=i; x++){
+            for(int y = 0; y<=j; y++){
+                for(int z =0; z <= k; z++){
+                    System.out.println(x+""+y+""+z);
+
                 }
             }
         }
