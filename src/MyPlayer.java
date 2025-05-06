@@ -14,8 +14,8 @@ public class MyPlayer {
         //print all combinations
 
         for(int x = 1; x < 4; x++){
-            for(int y =0; y<=y; y++){
-                for(int z =0; z<=z; z++){
+            for(int y =0; y<=3; y++){
+                for(int z =0; z<=3; z++){
                     if (y<= x && z <=y){
                         System.out.println("Reg board" + String.valueOf(x) + String.valueOf(y) + String.valueOf(z));
                         derivedBoards(x,y,z);
@@ -27,15 +27,28 @@ public class MyPlayer {
     }
 
     public void derivedBoards (int i, int j, int k){
-        int[]derivedBoards = new int [19];
-        for(int x =1; x <=i; x++){
-            for(int y = 0; y<=j; y++){
-                for(int z =0; z <= k; z++){
-                    System.out.println(x+""+y+""+z);
 
-                }
-            }
+        for(int x = k-1; x >= 0; x--){
+            System.out.println(i+""+j+""+x);
         }
+        for (int x = j-1; x >= 0; x--){
+           if(x>=k){
+               System.out.println(i+""+x+""+k);
+           } else{
+               System.out.println(i+""+x+""+x);
+           }
+       }
+      //  for (int x = k-3; x >= 0; x--){
+        //     System.out.println(i+""+j+""+x);
+
+       // int[]derivedBoards = new int [19];
+       // for(int x =1; x <=i; x++){
+      //          for(int z =0; z <= k; z++){
+      //              System.out.println(x+""+y+""+z);
+
+      //          }
+        //       }
+     //   }
     }
 
     public Point move(Chip[][] pBoard) {
