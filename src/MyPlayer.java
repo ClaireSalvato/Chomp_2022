@@ -1,11 +1,18 @@
 import java.awt.*;
+import java.util.ArrayList;
 
 public class MyPlayer {
     public Chip[][] gameBoard;
     public int[] columns;
+    public ArrayList<Board> winningBoards = new ArrayList<>();
+    public ArrayList<Board> losingBoards = new ArrayList<>();
 
     public MyPlayer() {
         columns = new int[10];
+
+        losingBoards.add(new Board(1,0,0));
+
+
 
         /***
          * This code will run just once, when the game opens.
@@ -13,12 +20,12 @@ public class MyPlayer {
          */
         //print all combinations
 
-        for(int x = 1; x < 4; x++){
-            for(int y =0; y<=3; y++){
-                for(int z =0; z<=3; z++){
-                    if (y<= x && z <=y){
+        for (int x = 1; x < 4; x++) {
+            for (int y = 0; y <= 3; y++) {
+                for (int z = 0; z <= 3; z++) {
+                    if (y <= x && z <= y) {
                         System.out.println("Reg board" + String.valueOf(x) + String.valueOf(y) + String.valueOf(z));
-                        derivedBoards(x,y,z);
+                        derivedBoards(x, y, z);
                     }
 
                 }
@@ -26,36 +33,51 @@ public class MyPlayer {
         }
     }
 
-    public void derivedBoards (int i, int j, int k){
+    public void derivedBoards(int i, int j, int k) {
 
-        for(int x = k-1; x >= 0; x--){
-            System.out.println(i+""+j+""+x);
+        boolean foundIJKWinner = false;
+
+
+        for (int x = k - 1; x >= 0; x--) {
+            System.out.println(i + "" + j + "" + x + ": (" + x + ",2)");
         }
-        for (int x = j-1; x >= 0; x--){
-           if(x>=k){
-               System.out.println(i+""+x+""+k);
-           } else{
-               System.out.println(i+""+x+""+x);
-           }
-       }
-      //  for (int x = k-3; x >= 0; x--){
-        //     System.out.println(i+""+j+""+x);
+        for (int x = j - 1; x >= 0; x--) {
+            if (x >= k) {
+                System.out.println(i + "" + x + "" + k + ": (" + x + ",1)");
+                if (i == losingBoards.get(0).cols[0]) {
+                    foundIJKWinner = true;
+                    System.out.println("Winner winner chicken dinner");
 
-       // int[]derivedBoards = new int [19];
-       // for(int x =1; x <=i; x++){
-      //          for(int z =0; z <= k; z++){
-      //              System.out.println(x+""+y+""+z);
+                } else {
+                    System.out.println(i + "" + x + "" + x + ": (" + x + ",1)");
+                }
+            }
+        }
+        for (int x = i - 1; x > 0; x--) {
+            if (j < x && k < x) {
+                System.out.println(x + "" + x + "" + k);
+            } else {
+                System.out.println(x + "" + x + "" + x);
+            }
 
-      //          }
-        //       }
-     //   }
+        }
+
+        if (foundIJKWinner == true) {
+            winningBoards.add(new Board(i, j, k));
+        } else {
+            losingBoards.add(new Board(i, j, k));
+        }
     }
 
-    public Point move(Chip[][] pBoard) {
+
+
+
+
+    public Point move (Chip[][]pBoard){
 
         System.out.println("MyPlayer Move");
 
-        gameBoard = pBoard;
+        //   gameBoard = pBoard;
         int column = 0;
         int row = 0;
 
