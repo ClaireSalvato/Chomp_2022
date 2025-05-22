@@ -44,14 +44,17 @@ public class MyPlayer {
         for (int x = j - 1; x >= 0; x--) {
             if (x >= k) {
                 System.out.println(i + "" + x + "" + k + ": (" + x + ",1)");
-                if (i == losingBoards.get(0).cols[0]) {
-                    foundIJKWinner = true;
-                    System.out.println("Winner winner chicken dinner");
-
-                } else {
-                    System.out.println(i + "" + x + "" + x + ": (" + x + ",1)");
+                for (int n = 0; n < losingBoards.size();n++) {
+                    if (i == losingBoards.get(n).cols[0] && x == losingBoards.get(n).cols[1] && k == losingBoards.get(n).cols[2]) {
+                        foundIJKWinner = true;
+                        System.out.println("Winner winner chicken dinner");
+                    }
                 }
             }
+            else {
+                System.out.println(i + "" + x + "" + x + ": (" + x + ",1)");
+            }
+
         }
         for (int x = i - 1; x > 0; x--) {
             if (j < x && k < x) {
